@@ -1,1 +1,13 @@
+.tab-selected {
+  ion-icon {
+    color: var(--ion-color-secondary);
+  }
+}
 
+ion-icon {
+  margin-bottom: .125em;
+}
+
+ion-tab-bar {
+  box-shadow: 2px 0 18px 2px rgba(0,0,0,.9)
+}

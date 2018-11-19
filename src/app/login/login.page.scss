@@ -1,0 +1,53 @@
+.login-page {
+  background-image: url('../../assets/map.jpg');
+  background-size: cover;
+  background-position: fixed;
+}
+
+.login-page__logo-container {
+  margin-top: 70px;
+  margin-bottom: 35px;
+}
+
+.login-page__logo {
+  max-width: 135px;
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-page__app-name {
+  font-weight: 700;
+  font-size: 2em;
+  letter-spacing: .2em;
+}
+
+.login-page__form {
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+
+  .item {
+    border-bottom: 1px solid #ddd;
+
+    &.item-has-focus {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .login-form__buttons-container {
+    margin-top: 1.5em;
+  }
+
+  .login-form__button:not(:first-child) {
+    margin-top: 1em;
+  }
+}
+
+ion-content {
+  --background: transparent;
+}
+
+ion-item {
+  --background: transparent;
+}

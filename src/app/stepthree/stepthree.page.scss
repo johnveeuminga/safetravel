@@ -1,0 +1,24 @@
+.img-container {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  &.img-placeholder {
+    border: 2px dashed rgba(255,255,255,.2);
+    margin-left: auto;
+    margin-right: auto;
+
+    .plus-icon {
+      font-size: 1.5em;
+      color: rgba(255,255,255,.2)
+    }
+  }
+}

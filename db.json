@@ -1,0 +1,130 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "lastname": "Feil",
+      "email": "Lenny89@gmail.com",
+      "firstname": 58590968
+    },
+    {
+      "id": 2,
+      "lastname": "Dicki",
+      "email": "Murphy32@yahoo.com",
+      "firstname": "tempor veniam dolore laboris"
+    },
+    {
+      "id": 3,
+      "lastname": "Auer",
+      "email": "Fatima.Huels73@hotmail.com",
+      "firstname": 96888304.34976012
+    },
+    {
+      "id": 4,
+      "lastname": "Dare",
+      "email": "Floyd58@hotmail.com",
+      "firstname": 27869454.56223902
+    },
+    {
+      "id": 5,
+      "lastname": "Bode",
+      "email": "Garret.Runolfsson82@gmail.com",
+      "firstname": 48627517
+    }
+  ],
+  "accidents": [
+    {
+      "lat": 16.414737169560798,
+      "lng": 120.63892134321526,
+      "id": 1,
+      "date": "Mon Mar 26 2018 21:50:05 GMT+0800 (Philippine Standard Time)",
+      "images": [
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        },
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        },
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        }
+      ],
+      "status": 0,
+      "description": "Rerum possimus maiores sapiente dolores dolore minima est. Est natus velit fugit. Temporibus perspiciatis aut dolor aut fugiat. Doloremque consequuntur sapiente explicabo odit ea et.",
+      "title": "Velit sed sed eum et eius maiores."
+    },
+    {
+      "lat": 16.41196132452806,
+      "lng": 120.60176957410344,
+      "id": 2,
+      "date": "Sun Jul 22 2018 11:18:07 GMT+0800 (Philippine Standard Time)",
+      "images": [
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        }
+      ],
+      "status": 1,
+      "description": "Enim maiores ut atque. Assumenda ut et laborum soluta voluptates ut adipisci. Illum rerum et earum repudiandae. Necessitatibus nulla sunt nulla sed consequatur ut ut provident cupiditate. Consequuntur perferendis possimus odit. Expedita tenetur magnam est.",
+      "title": "Consequuntur laborum vel itaque."
+    },
+    {
+      "lat": 16.412060823189247,
+      "lng": 120.61373863292972,
+      "id": 3,
+      "date": "Thu Jan 11 2018 01:59:33 GMT+0800 (Philippine Standard Time)",
+      "images": [
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        },
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        },
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        }
+      ],
+      "status": 1,
+      "description": "Illum maiores incidunt illum dolorem. Possimus quibusdam maxime. Eos nihil tenetur fugit facilis asperiores temporibus itaque aperiam. Sint asperiores voluptas ut eligendi. Ex molestias vel et voluptate ex officiis aliquam vero. Accusamus quae expedita.",
+      "title": "Voluptatem ducimus eius rerum ut."
+    },
+    {
+      "lat": 16.412360968213513,
+      "lng": 120.61900677441012,
+      "id": 4,
+      "date": "Sun Dec 17 2017 22:10:01 GMT+0800 (Philippine Standard Time)",
+      "images": [
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        },
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        }
+      ],
+      "status": 1,
+      "description": "Impedit doloremque voluptate modi. Impedit illo velit hic. Excepturi vel saepe. Et reiciendis aut sint sint. Aliquid cum adipisci.",
+      "title": "Esse dolor qui magni omnis nihil dolorem."
+    },
+    {
+      "lat": 16.411512935994942,
+      "lng": 120.63019306675895,
+      "id": 5,
+      "date": "Thu Jul 05 2018 23:05:37 GMT+0800 (Philippine Standard Time)",
+      "images": [
+        {
+          "uri": "https://picsum.photos/200/300/?random"
+        }
+      ],
+      "status": 0,
+      "description": "In autem dolorem velit autem beatae ut autem magnam voluptates. Voluptatem suscipit cupiditate assumenda quibusdam porro nobis modi. Ratione facilis occaecati porro laboriosam ipsa iusto. Rem fuga molestias. Atque dolorum reprehenderit laudantium fuga omnis voluptatem et consequatur neque. Ipsum et autem.",
+      "title": "Omnis facere et corporis quis."
+    },
+    {
+      "name": "ygthj",
+      "description": "",
+      "lat": 16.4169412,
+      "lng": 120.5770198,
+      "images": [],
+      "status": 1,
+      "id": 6
+    }
+  ]
+}

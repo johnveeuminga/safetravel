@@ -1,0 +1,20 @@
+<ion-content padding class='login-page'>
+  <div class='login-page__logo-container' text-center>
+    <img src="./assets/logo.png" alt="Logo" class='logo login-page__logo'>
+    <h2 class='login-page__app-name'>SafeTravel</h2>
+  </div>
+  <div class='login-page__form'>
+    <ion-item>        
+      <ion-label><ion-icon name="mail"></ion-icon></ion-label>
+      <ion-input type="text" placeholder='Email'></ion-input>
+    </ion-item>
+    <ion-item>        
+      <ion-label><ion-icon name="lock"></ion-icon></ion-label>
+      <ion-input type="password" placeholder='Password'></ion-input>
+    </ion-item>
+    <div class="login-form__buttons-container">
+      <ion-button block class='login-form__submit login-form__button' (click)="goToHome()" expand='block'>Login</ion-button>
+      <ion-button block color='secondary' class='login-form__register login-form__button' expand='block'>Register</ion-button>
+    </div>
+  </div>
+</ion-content>

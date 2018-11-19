@@ -1,0 +1,19 @@
+<ion-content padding>
+  <h1><span class="text-primary">STEP 1:</span> <br/> Tell us about the accident.</h1>
+  <p> Give us a brief description of what happened. </p>
+
+  <form [formGroup]="form" class='form' (ngSubmit)="processForm()">
+    <ion-item>
+      <ion-label position="floating">Name the accident: </ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tell us more: </ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <div text-right padding-top>
+      <ion-button type="submit" [disabled]="!form.valid">Proceed</ion-button>
+    </div>
+  </form>
+
+</ion-content>

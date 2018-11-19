@@ -1,0 +1,7 @@
+.item {
+  border-bottom: 1px solid #ddd;
+
+  &.item-has-focus {
+    border-bottom-color: transparent;
+  }
+}

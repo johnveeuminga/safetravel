@@ -1,0 +1,18 @@
+.thankyou__content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thankyou {
+  padding: 1em;
+  border: 2px solid var(--ion-color-success);
+  border-radius: 5px; 
+  width: 100%;
+}
+
+.check-icon {
+  color: var(--ion-color-success);
+  font-size: 3em;
+}

@@ -1,0 +1,32 @@
+<ion-content padding>
+  <h1><span class="text-danger">STEP 3:</span> <br/> Tell us more </h1>
+  <p> If you can provide these details, do so here. </p>
+
+  <div class="form" >
+    <ion-item>
+      <ion-label>Date & Time of accident(defaults to current time)</ion-label>
+      <ion-datetime display-format="MMM DD, YYYY HH:mm" [(ngModel)]="dateTime"></ion-datetime>
+    </ion-item>
+    <h2>Photos</h2>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <div class='img-container img-placeholder' (click)="chooseImage()">
+            <ion-icon name="add" class='plus-icon'></ion-icon>
+          </div>
+        </ion-col>
+        <ion-col size="6" *ngFor="let image of images; index as i">
+          <div class='img-container' (click)="chooseImage()">
+            <img [src]="image">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div text-right padding-top>
+      <ion-button (click)="processForm()">Proceed</ion-button>
+    </div>
+  </div>
+
+
+</ion-content>

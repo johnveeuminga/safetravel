@@ -9,7 +9,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "server": "json-server --watch ./db.json",
+    "generate-mock-data": "node ./src/app/providers/api/generate-mock-data"
   },
   "private": true,
   "dependencies": {
@@ -20,12 +22,38 @@
     "@angular/platform-browser": "~6.1.1",
     "@angular/platform-browser-dynamic": "~6.1.1",
     "@angular/router": "~6.1.1",
-    "@ionic-native/core": "5.0.0-beta.21",
+    "@ionic-native/background-geolocation": "^5.0.0-beta.21",
+    "@ionic-native/base64": "^5.0.0-beta.21",
+    "@ionic-native/core": "^5.0.0-beta.21",
+    "@ionic-native/geofence": "^5.0.0-beta.21",
+    "@ionic-native/geolocation": "^5.0.0-beta.21",
+    "@ionic-native/google-maps": "^5.0.0-beta.25",
+    "@ionic-native/image-picker": "^5.0.0-beta.21",
     "@ionic-native/splash-screen": "5.0.0-beta.21",
     "@ionic-native/status-bar": "5.0.0-beta.21",
     "@ionic/angular": "4.0.0-beta.15",
+    "cordova-android": "6.3.0",
+    "cordova-ios": "4.5.5",
+    "cordova-plugin-add-swift-support": "1.6.0",
+    "cordova-plugin-compat": "1.2.0",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-geofence": "0.7.0",
+    "cordova-plugin-geolocation": "4.0.1",
+    "cordova-plugin-googlemaps": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps",
+    "cordova-plugin-ionic-keyboard": "^2.1.3",
+    "cordova-plugin-ionic-webview": "^2.2.3",
+    "cordova-plugin-mauron85-background-geolocation": "2.3.6",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-telerik-imagepicker": "^2.2.2",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-support-google-services": "^1.1.0",
     "core-js": "^2.5.3",
+    "es6-promise-plugin": "4.2.2",
+    "json-schema-faker": "^0.5.0-rc16",
+    "phonegap-plugin-multidex": "^1.0.0",
     "rxjs": "6.2.2",
+    "rxjs-compat": "^6.3.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
@@ -42,8 +70,10 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.12.0",
     "codelyzer": "~4.5.0",
+    "faker": "^4.1.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
+    "json-server": "^0.14.0",
     "karma": "~3.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.0",
@@ -54,5 +84,44 @@
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyCxKgG3NmRttizdhYi9Wmf6oSdE2R8VRxo",
+        "API_KEY_FOR_IOS": "AIzaSyCxKgG3NmRttizdhYi9Wmf6oSdE2R8VRxo",
+        "LOCATION_WHEN_IN_USE_DESCRIPTION": "This app wants to get your location while this app runs only.",
+        "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
+      },
+      "cordova-plugin-mauron85-background-geolocation": {
+        "GOOGLE_PLAY_SERVICES_VERSION": "11+",
+        "ANDROID_SUPPORT_LIBRARY_VERSION": "27+",
+        "ICON": "@mipmap/icon",
+        "SMALL_ICON": "@mipmap/icon",
+        "ACCOUNT_NAME": "@string/app_name",
+        "ACCOUNT_LABEL": "@string/app_name",
+        "ACCOUNT_TYPE": "$PACKAGE_NAME.account",
+        "CONTENT_AUTHORITY": "$PACKAGE_NAME"
+      },
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      },
+      "cordova-plugin-geofence": {},
+      "cordova-plugin-telerik-imagepicker": {
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "Take accident photos."
+      },
+      "com-badrit-base64": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
 }

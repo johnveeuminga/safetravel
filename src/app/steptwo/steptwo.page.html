@@ -1,0 +1,22 @@
+<ion-content padding>
+  <h1><span class="text-danger">STEP 2:</span> <br/> Where did it happen? </h1>
+  <p> Did it happen where you are right now or somewhere else? </p>
+
+  <form [formGroup]="form" class="form" (ngSubmit)="processForm()" >
+    <div class="location__container">
+      <ion-radio-group formControlName="location">
+        <ion-item>
+          <ion-label>Where I am right now</ion-label>
+          <ion-radio slot="end" [value]="LOCATION_TYPE_USER_LOC"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Somewhere else</ion-label>
+          <ion-radio slot="end" [value]="LOCATION_TYPE_CUSTOM"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+    <div text-right padding-top>
+      <ion-button type="submit" [disabled]="!form.valid">Proceed</ion-button>
+    </div>
+  </form>
+</ion-content>
