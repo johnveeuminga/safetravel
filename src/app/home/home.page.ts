@@ -1,8 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { LoadingController } from '@ionic/angular'
+import { Moment } from 'moment'
 import {
   Platform,
 } from '@ionic/angular';
+
 
 import { Router } from '@angular/router';
 
@@ -10,7 +12,6 @@ import { Router } from '@angular/router';
 import {
   GoogleMaps,
   GoogleMap,
-  MyLocation,
   GoogleMapsEvent,
   Marker,
   GoogleMapsAnimation
@@ -26,7 +27,7 @@ import { mapStyle } from '../mapStyles'
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
 
@@ -67,10 +68,6 @@ export class HomePage implements OnInit {
       styles: mapStyle
     })
 
-    if(this.loading) {
-      this.loading.dismiss()
-    }
-
     // add a marker
     this.userMarker = this.map.addMarkerSync({
       title: 'You are here!',
@@ -78,44 +75,59 @@ export class HomePage implements OnInit {
         lat: lat ? lat: 16.41666,
         lng: lng ? lng : 120.5999976,
       },
-      icon: 'https://cdn.mapmarker.io/api/v1/fa?size=45&icon=&color=%23009CE0&',
-      animation: GoogleMapsAnimation.BOUNCE
+      icon: {
+        url: require('../../assets/icon/car.png')
+      },
     });
 
     // show the infoWindow
     this.userMarker.showInfoWindow()
 
-    this.location.startTracking()
+    this.location.startTracking((location) => {
+      if(location) {
+        this.userMarker.setPosition({
+          lat: location.latitude,
+          lng: location.longitide
+        })
+      }
+    })
 
     this.addMarkers()
+
+    if(this.loading) {
+      this.loading.dismiss()
+    }
+
   }
 
   addMarkers() {
     if(this.geofence.locations) {
-      this.geofence.locations.map(async ({lat, lng, status, title}) => {
-        if(!status) return false
+      this.geofence.locations.map(async (location) => {
+        if(!location.status) return false
+        const { title, lat, lng, }  = location
         this.map.addMarker({
           title,
           position: {
             lat,
             lng
           },
-          // icon:'https://cdn.mapmarker.io/api/v1/fa?size=45&icon=&color=%239F0500&',
+          icon: require('../../assets/icon/caraccident.png')
         }).then((marker: Marker) => {
           marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => 
-          this.zone.run(() => {
-            this.accidents.push(marker)
-            this.onMarkerClick(marker)
-          }));
+            this.zone.run(() => {
+              const { id, date }  = location
+              this.accidents.push({id, lat, lng, status, title, date })
+              this.onMarkerClick({id, lat, lng, status, title, date})
+            }));
+          })
+          this.map.addCircle({
+            'center': {lat, lng},
+            'radius': 450,
+            'strokeColor' : '#88A000',
+            'strokeWidth': 1,
+            'fillColor' : '#880000'
+          })
         })
-        this.map.addCircle({
-          'center': {lat, lng},
-          'radius': 500,
-          'strokeColor' : '#AA00FF',
-          'strokeWidth': 5,
-          'fillColor' : '#880000'
-        })
-      })
     }
 
     return false;
@@ -125,12 +137,18 @@ export class HomePage implements OnInit {
     this.selectedMarker = val
   }
 
-  onMarkerClick (marker: Marker) {
+  onMarkerClick (marker: any) {
     this.toggleSelected(marker)
   }
 
   goToWarning() {
     this.router.navigateByUrl('/warning')
+  }
+
+  goToDetails () {
+    if(!this.selectedMarker) return
+
+    this.router.navigateByUrl(`/accidents/${this.selectedMarker.id}`)
   }
 
   async presentLoading () {
@@ -140,4 +158,6 @@ export class HomePage implements OnInit {
 
     this.loading.present()
   }
+
+  formatAccident
 }

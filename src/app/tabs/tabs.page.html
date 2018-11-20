@@ -3,8 +3,8 @@
   <ion-tab tab="home">
     <ion-router-outlet name="home"></ion-router-outlet>
   </ion-tab>
-  <ion-tab tab="about">
-    <ion-router-outlet name="about"></ion-router-outlet>
+  <ion-tab tab="accidents-list">
+    <ion-router-outlet name="accidents-list"></ion-router-outlet>
   </ion-tab>
   <ion-tab tab="contact">
     <ion-router-outlet name="contact"></ion-router-outlet>
@@ -12,14 +12,14 @@
 
   <ion-tab-bar slot="bottom">
 
-    <ion-tab-button tab="home" href="/tabs/(home:home)">
+    <ion-tab-button tab="home" href="app/tabs/(home:home)">
       <ion-icon name="home"></ion-icon>
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="accidents" href="app/tabs/(home:home)">
+    <ion-tab-button tab="accidents-list" href="app/tabs/(accidents-list:accidents-list)">
       <ion-icon name="alert"></ion-icon>
-      <ion-label>Accidents</ion-label>
+      <ion-label>Reported Accidents</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="contact" href="app/tabs/(contact:contact)">

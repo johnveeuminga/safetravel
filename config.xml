@@ -3,7 +3,7 @@
     <name>SafeTravel</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -79,7 +79,6 @@
     <allow-navigation href="http://192.168.1.93:8100" sessionid="687a2119" />
     <allow-navigation href="http://localhost:8100" sessionid="1b446370" />
     <allow-navigation href="http://192.168.154.2:8100" sessionid="f0018458" />
-    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
@@ -112,4 +111,7 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Take accident photos." />
     </plugin>
     <plugin name="com-badrit-base64" />
+    <plugin name="cordova-plugin-add-swift-support" spec="1.7.2" />
+    <engine name="android" spec="7.1.2" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

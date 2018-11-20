@@ -1,11 +1,10 @@
-TODAY:
-- Custom Location integration.
-- Remove image from image picker.
-
 UPCOMING:
-- Set up your accident overview page.
 - OAuth2 sign in
 - Set up user profile page.
 - Set up change password page.
 - Get geofence data from API
 - User registration
+
+TOMORROW:
+- Add map on accident overview page.
+- Implement ionic-photoviewer

@@ -84,9 +84,14 @@ var schema = {
             "type": "integer",
             "minimum": 0,
             "maximum": 1,
+          },
+          "user_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
           }
         },
-        "required": ["lat", "lng", "id", "date", "images", "status", "description", "title"]
+        "required": ["lat", "lng", "id", "date", "images", "status", "description", "title", "user_id"]
       }
     },
   },

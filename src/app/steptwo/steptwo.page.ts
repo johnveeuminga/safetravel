@@ -44,19 +44,21 @@ export class SteptwoPage implements OnInit {
   }
 
   async processForm () {
-    this.showLoading()
     if(this._getLocationType() === 'userLocation') {
+      this.showLoading()
+
       try {
         const {lat,lng} = await this.locationService.getUserPosition()
         this.accidentReporting.addFields({lat, lng})
       } catch( err ) {
         console.log(err)
       }
+
+      if(this.loading) {
+        this.loading.dismiss()
+      }
     }
 
-    if(this.loading) {
-      this.loading.dismiss()
-    }
     this.goToNextPage()
   }
 

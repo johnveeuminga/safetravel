@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Accident Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="accident-details" *ngIf='accident'>
+    <div class="accident-meta">
+        <h2>{{accident.title}}</h2>
+        <small class='accident__date'>{{ accident.date | momentDate }}</small>
+        <p>{{accident.description}}</p>
+        <div class="accident__actions" *ngIf="accident.status === 1" (click)="markAccidentAsResolved()">
+          <ion-button>Mark as Resolved</ion-button>
+        </div>
+        <ion-button color='secondary'>View on Map</ion-button>
+    </div>
+    <div class="accident-photos" padding *ngIf="accident.images">
+      <ion-grid>
+        <ion-row>
+          <ion-col size='6' *ngFor="let image of accident.images">
+            <div class="image-container">
+              <img src="{{image.uri}}" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

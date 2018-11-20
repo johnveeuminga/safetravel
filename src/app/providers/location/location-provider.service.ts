@@ -27,10 +27,7 @@ export class LocationProviderService {
    */
   async getInitialPosition() {
     try {
-      let resp = await this.getUserPosition()
-      this.userPosition.lat = resp.coords.latitude
-      this.userPosition.lng = resp.coords.longitude
-
+      await this.getUserPosition()
     } catch( err ) {
       console.log(err)
     }
@@ -56,6 +53,7 @@ export class LocationProviderService {
     // Background tracking
     console.log('Tracker Started')
     this.backgroundGeolocation.configure(bgConfig).subscribe((location) => {
+      if(!location) return false 
       this.zone.run(() => {
         this.userPosition.lat = location.latitude;
         this.userPosition.lng = location.longitude;
@@ -63,8 +61,7 @@ export class LocationProviderService {
         console.log(cb)
 
         if(typeof cb === 'function') {
-          console.log(true)
-          cb()
+          cb(location)
         }
       })
       

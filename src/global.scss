@@ -1,8 +1,5 @@
 @import "theme/fonts";
 
-// Customizations
-@import "theme/buttons";
-@import "theme/form";
 
 // http://ionicframework.com/docs/theming/
 @import "~@ionic/angular/css/core.css";
@@ -15,4 +12,9 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+// Customizations
+@import "theme/buttons";
+@import "theme/form";
+@import "theme/main";
 

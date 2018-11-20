@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   img {
     width: 100%;
@@ -19,6 +20,25 @@
     .plus-icon {
       font-size: 1.5em;
       color: rgba(255,255,255,.2)
+    }
+  }
+
+  .img__buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    ion-button {
+      --border-radius: 100% !important;
+      --padding-top: 0;
+      --padding-bottom: 0;
+      --padding-start: 0;
+      --padding-end: 0;
+      --width: 32px;
+      --height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

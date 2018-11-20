@@ -1,0 +1,27 @@
+.accident-meta {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: var(--ion-color-blue-dark);
+
+  .accident__date {
+    color: var(--ion-color-light-tint)
+  }
+  
+  h2 {
+    marin-top: 0;
+  }
+
+  .image-container {
+    width: 100%;
+    height: 150px;
+
+    img { 
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}

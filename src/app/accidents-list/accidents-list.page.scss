@@ -1,0 +1,31 @@
+.accident {
+  display: flex;
+  align-items: center;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #1c2131;
+
+  .accident-icon__container {
+    flex-basis: 20%;
+    max-width: 20%;
+    flex-shrink: 0;
+    flex-grow: 1;
+    margin-right: 1em;
+    
+    ion-icon {
+      width: 2em;
+      height: 2em;
+    }
+  }
+
+  .accident-details__name {
+    font-weight: 700;
+    font-size: 1.125em;
+  }
+
+  .accident-details__date {
+    color: var(--ion-color-light-tint)
+  }
+}

@@ -12,6 +12,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx'
 import { Geofence } from '@ionic-native/geofence/ngx'
 import { ImagePicker } from '@ionic-native/image-picker/ngx'
 import { Base64 } from '@ionic-native/base64/ngx'
+import { Camera } from '@ionic-native/camera/ngx'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,7 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule ],
   providers: [
     StatusBar,
     SplashScreen,
@@ -29,6 +30,7 @@ import { AppComponent } from './app.component';
     Geofence,
     ImagePicker,
     Base64,
+    Camera,
   ],
   bootstrap: [AppComponent]
 })
