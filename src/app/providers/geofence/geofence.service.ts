@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Geofence } from '@ionic-native/geofence/ngx'
 import { HttpClient } from '@angular/common/http' 
+import { AccidentService } from '../accident/accident.service'
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class GeofenceService {
   constructor(
     private geofence: Geofence,
     private http: HttpClient,
+    private accidents: AccidentService,
   ) {}
 
   public setUpGeofence() {
@@ -60,7 +62,6 @@ export class GeofenceService {
   }
 
   async getLocations() {
-    this.locations = await this.http.get(this.API_URL).toPromise()
-    console.log(this.locations)
+    this.locations = await this.accidents.fetchAccidents()
   }
 }

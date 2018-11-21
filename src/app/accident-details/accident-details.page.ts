@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { NavigationEnd, Router, ActivatedRoute  } from '@angular/router';
 import { LoadingController } from '@ionic/angular'
 import { ApiProviderService } from '../providers/api/api-provider.service' 
+import { AccidentService } from '../providers/accident/accident.service'
 
 @Component({
   selector: 'app-accident-details',
@@ -19,6 +20,7 @@ export class AccidentDetailsPage implements OnInit {
     private router: Router,
     public api: ApiProviderService,
     private loadingCtrl: LoadingController,
+    private accidentService: AccidentService,
     private route: ActivatedRoute
   ) { }
 
@@ -35,8 +37,7 @@ export class AccidentDetailsPage implements OnInit {
       await this.presentLoading()
       this.sub =  this.route.params.subscribe( async routeParams => {
         const id = routeParams['id']
-        this.accident = await this.api.performGet(`/accidents/${id}`)
-        console.log(this.accident)
+        this.accident = await this.accidentService.getAccident(id)
         this.hideLoading()
       })
     } catch(err) {
@@ -49,7 +50,7 @@ export class AccidentDetailsPage implements OnInit {
 
   async presentLoading(message = null) {
     this.loading = await this.loadingCtrl.create({
-      message: message || 'Fetching data...'
+      message: message || 'Preparing data...'
     })
 
     this.loading.present()
@@ -69,6 +70,10 @@ export class AccidentDetailsPage implements OnInit {
     } )
     this.accident.status = 0
     await this.loading.dismiss()
+  }
+
+  async viewMap() {
+    this.router.navigateByUrl(`/accidents/${this.accident.id}/map`)
   }
 
 }

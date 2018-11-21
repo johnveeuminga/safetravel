@@ -1,4 +1,5 @@
-import { Injectable, NgZone } from '@angular/core'
+import { Injectable, NgZone, Output, EventEmitter } from '@angular/core'
+import { Events } from '@ionic/angular'
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx'
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx'
 import 'rxjs/add/operator/filter'
@@ -8,6 +9,8 @@ import 'rxjs/add/operator/filter'
 })
 
 export class LocationProviderService {
+
+  @Output() locationChanged = new EventEmitter<any>()
 
   userPosition = {
     lat: null,
@@ -20,6 +23,7 @@ export class LocationProviderService {
     private backgroundGeolocation: BackgroundGeolocation,
     private geolocation: Geolocation,
     private zone: NgZone,
+    private events: Events
   ) {}
 
   /**
@@ -55,13 +59,10 @@ export class LocationProviderService {
     this.backgroundGeolocation.configure(bgConfig).subscribe((location) => {
       if(!location) return false 
       this.zone.run(() => {
-        this.userPosition.lat = location.latitude;
-        this.userPosition.lng = location.longitude;
-
-        console.log(cb)
-
-        if(typeof cb === 'function') {
-          cb(location)
+        if(this.userPosition.lat !==  location.latitude || this.userPosition.lng !== location.longitude) {
+          this.userPosition.lat = location.latitude;
+          this.userPosition.lng = location.longitude;
+          this.events.publish('location:changed', this.userPosition)
         }
       })
       
@@ -72,18 +73,18 @@ export class LocationProviderService {
     this.backgroundGeolocation.start()
 
     // Foreground tracking
-    this.watch = this.geolocation.watchPosition(fgConfig).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
+    // this.watch = this.geolocation.watchPosition(fgConfig).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
     
-      // Run update inside of Angular's zone
-      this.zone.run(() => {
-        this.userPosition.lat = position.coords.latitude;
-        this.userPosition.lng = position.coords.longitude;
+    //   // Run update inside of Angular's zone
+    //   this.zone.run(() => {
 
-        if(typeof cb === 'function') {
-          cb()
-        }
-      });
-    });
+    //     if(this.userPosition.lat !==  position.coords.latitude && this.userPosition.lng !== position.coords.longitude) {
+    //       this.userPosition.lat = position.coords.latitude;
+    //       this.userPosition.lng = position.coords.longitude;
+    //       this.events.publish('location:changed', this.userPosition)
+    //     }
+    //   });
+    // });
   }
 
   /**
@@ -100,7 +101,7 @@ const bgConfig = {
   stationaryRadius: 20,
   distanceFilter: 10,
   debug: true,
-  interval: 2000
+  interval: 3000
 }
 
 const fgConfig = {

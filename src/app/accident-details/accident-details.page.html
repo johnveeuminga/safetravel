@@ -16,7 +16,7 @@
         <div class="accident__actions" *ngIf="accident.status === 1" (click)="markAccidentAsResolved()">
           <ion-button>Mark as Resolved</ion-button>
         </div>
-        <ion-button color='secondary'>View on Map</ion-button>
+        <ion-button color='secondary' (click)="viewMap()">View on Map</ion-button>
     </div>
     <div class="accident-photos" padding *ngIf="accident.images">
       <ion-grid>

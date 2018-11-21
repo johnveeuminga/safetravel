@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { LoadingController } from '@ionic/angular'
+import { LoadingController, Events } from '@ionic/angular'
 import { Moment } from 'moment'
 import {
   Platform,
@@ -20,6 +20,7 @@ import {
 // Location Service
 import { LocationProviderService } from '../providers/location/location-provider.service' 
 import { GeofenceService } from '../providers/geofence/geofence.service' 
+import { AccidentService } from '../providers/accident/accident.service'
 
 // MapStyles
 import { mapStyle } from '../mapStyles'
@@ -40,10 +41,11 @@ export class HomePage implements OnInit {
   constructor(
     private platform: Platform,
     private location: LocationProviderService,
-    private geofence: GeofenceService,
+    private accidentService: AccidentService,
     private zone: NgZone,
     private router: Router,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private events: Events
   ) {}
 
   async ngOnInit() {
@@ -83,15 +85,12 @@ export class HomePage implements OnInit {
     // show the infoWindow
     this.userMarker.showInfoWindow()
 
-    this.location.startTracking((location) => {
-      if(location) {
-        this.userMarker.setPosition({
-          lat: location.latitude,
-          lng: location.longitide
-        })
-      }
+    this.location.startTracking()
+    
+    this.events.subscribe('location:changed', (userPosition) => {
+      console.log(userPosition)
+      this.userMarker.setPosition(userPosition)
     })
-
     this.addMarkers()
 
     if(this.loading) {
@@ -101,8 +100,8 @@ export class HomePage implements OnInit {
   }
 
   addMarkers() {
-    if(this.geofence.locations) {
-      this.geofence.locations.map(async (location) => {
+    if(this.accidentService.accidents) {
+      this.accidentService.accidents.map(async (location) => {
         if(!location.status) return false
         const { title, lat, lng, }  = location
         this.map.addMarker({
@@ -159,5 +158,4 @@ export class HomePage implements OnInit {
     this.loading.present()
   }
 
-  formatAccident
 }

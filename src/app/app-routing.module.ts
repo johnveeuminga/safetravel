@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'chooselocation', loadChildren: './chooselocation/chooselocation.module#ChooselocationPageModule' },
   { path: 'accidents-list', loadChildren: './accidents-list/accidents-list.module#AccidentsListPageModule' },
   { path: 'accidents/:id', loadChildren: './accident-details/accident-details.module#AccidentDetailsPageModule' },
+  { path: 'accidents/:id/map', loadChildren: './accident-map-view/accident-map-view.module#AccidentMapViewPageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -5,6 +5,5 @@ UPCOMING:
 - Get geofence data from API
 - User registration
 
-TOMORROW:
-- Add map on accident overview page.
-- Implement ionic-photoviewer
+TODAY:
+- Implement PhotoViewer Ionic

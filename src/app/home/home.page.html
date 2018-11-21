@@ -5,7 +5,7 @@
       {{selectedMarker.title}}
     </p>
     <p>
-      <small> Accident happened on: {{selectedMarker.date | momentDate}}</small>
+      <small> {{selectedMarker.date | momentDate}} </small>
     </p>
     <ion-button (click)="goToDetails()">View More</ion-button>
   </div>

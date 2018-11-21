@@ -117,13 +117,16 @@
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
-      "cordova-plugin-geofence": {},
       "cordova-plugin-telerik-imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "Take accident photos."
       },
       "com-badrit-base64": {},
-      "cordova-plugin-add-swift-support": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-geofence": {
+        "GEOFENCE_ALWAYS_USAGE_DESCRIPTION": "${EXECUTABLE_NAME} Would Like to Use Your Current Location Even In Background.",
+        "GEOFENCE_IN_USE_USAGE_DESCRIPTION": "${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use."
+      },
+      "cordova-plugin-add-swift-support": {}
     },
     "platforms": [
       "android",
