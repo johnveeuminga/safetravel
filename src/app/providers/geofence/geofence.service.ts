@@ -62,6 +62,7 @@ export class GeofenceService {
   }
 
   async getLocations() {
-    this.locations = await this.accidents.fetchAccidents()
+    const resp = await this.accidents.fetchAccidents()
+    this.locations = resp
   }
 }

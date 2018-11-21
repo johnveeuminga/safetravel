@@ -6,17 +6,17 @@ import { HttpClient } from '@angular/common/http'
 })
 export class ApiProviderService {
 
-  API_URL = 'http://localhost:3000'
+  API_URL = 'http://localhost:3001'
 
   constructor(
     private http: HttpClient
   ) { }
 
-  performGet (url): Promise<any> {
-    return this.http.get(`${this.API_URL}${url}`).toPromise()
+  performGet (url, params = null): Promise<any> {
+    return this.http.get(`${this.API_URL}${url}`, params).toPromise()
   }
 
-  performPost (url, params) {
+  performPost (url, params): Promise<any> {
     return this.http.post(`${this.API_URL}${url}`, params).toPromise()
   }
 

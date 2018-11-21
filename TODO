@@ -1,9 +1,6 @@
 UPCOMING:
-- OAuth2 sign in
+- Use storage to store user
+- Auth middlewares
 - Set up user profile page.
 - Set up change password page.
-- Get geofence data from API
 - User registration
-
-TODAY:
-- Implement PhotoViewer Ionic
