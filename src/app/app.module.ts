@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AuthGuardService } from './providers/auth-guard/auth-guard.service'
+import { AuthInterceptorService } from './providers/auth-interceptor/auth-interceptor.service' 
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +37,13 @@ import { AuthGuardService } from './providers/auth-guard/auth-guard.service'
     Base64,
     Camera,
     IonicStorageModule,
-    AuthGuardService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    AuthInterceptorService,
+    AuthGuardService,
   ],
   bootstrap: [AppComponent]
 })

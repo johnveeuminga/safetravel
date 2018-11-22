@@ -14,22 +14,14 @@ export class AccidentService {
   constructor(
     private api: ApiProviderService,
     private auth: AuthService
-  ) { 
-    if(this.auth.user.accessToken) {
-      this.headers = {
-        'Authorization': `Bearer ${this.auth.user.accessToken}`
-      }
-    }
-  }
+  ) { }
 
 
   async fetchAccidents (): Promise<Array<any>> {
     try {
       
-      const accidents = await this.api.performGet('/api/accidents', { headers: this.headers })
+      const accidents = await this.api.performGet('/api/accidents')
       this.accidents = accidents.data
-
-      console.log(this.accidents)
 
       return this.accidents
     } catch(err) {
@@ -39,7 +31,7 @@ export class AccidentService {
 
   async fetchAccident (id) {
     try {
-      this.selectedAccident = await this.api.performGet(`/accidents/${id}`, this.headers)
+      this.selectedAccident = await this.api.performGet(`/accidents/${id}`)
       this.accidents.push(this.selectedAccident)
 
       return this.selectedAccident

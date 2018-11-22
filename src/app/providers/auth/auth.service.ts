@@ -56,7 +56,7 @@ export class AuthService {
         this.user = {
           ...user,
           accessToken,
-          refreshToken
+          refreshToken,
         }
 
         await this.storeUser()
@@ -73,7 +73,7 @@ export class AuthService {
   async getStoredUser () {
     const user = await this.storage.get(this.USER_STORAGE_KEY)
 
-    if(user) {
+    if(user && !this.user) {
       this.user = user
     }
 
@@ -82,7 +82,6 @@ export class AuthService {
 
   async storeUser () {
     const user = await this.storage.set(this.USER_STORAGE_KEY, this.user)
-    console.log(await this.storage.get(this.USER_STORAGE_KEY))
 
     return user
   }

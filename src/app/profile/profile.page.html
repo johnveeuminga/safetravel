@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button></ion-back-button>
+    <ion-title>Your Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="user-details">
+    <div class="user-header">
+      <div class="avatar-container" padding text-center>
+        <img src="https://api.adorable.io/avatars/155/{{user.id}}.png" alt="Random Avatar">
+        <h2>{{user.name}}</h2>
+      </div>
+    </div>
+    <div class="user-content">
+        <div class="user-info">
+          <div class="user-info__label">
+            <ion-icon name="mail"></ion-icon>
+          </div>
+          {{user.email}}
+        </div>
+        <div class="user-info">
+          <div class="user-info__label">
+            <ion-icon name="pin"></ion-icon>
+          </div>
+          {{user.address}}
+        </div>
+        <div class="user-info">
+          <div class="user-info__label">
+            <ion-icon name="log-in"></ion-icon>
+          </div>
+          {{ user.created_at | momentDate }}
+        </div>
+        <div class="user-info">
+          <ion-button>Edit</ion-button>
+          <ion-button color='secondary'>Sign out</ion-button>
+        </div>
+      </div>
+    </div>
+</ion-content>

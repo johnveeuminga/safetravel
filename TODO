@@ -1,10 +1,7 @@
 UPCOMING:
-- Use storage to store user
-- Auth middlewares
 - Set up user profile page.
 - Set up change password page.
 - User registration
 
 TODAY:
-- Fix router guards
 - Fix route strategy

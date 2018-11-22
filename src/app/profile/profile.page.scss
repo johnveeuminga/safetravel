@@ -1,0 +1,18 @@
+.user-header {
+    padding: 1em;
+    background-color: var(--ion-color-blue-dark)
+}
+
+.user-info__label { 
+    font-weight: 700;
+}
+
+.user-info {
+    display: flex;
+    padding-left: 1em;
+    padding-right: 1em;
+    justify-content: space-between;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #1c2131;    
+}

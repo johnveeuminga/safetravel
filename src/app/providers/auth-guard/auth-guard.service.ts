@@ -13,11 +13,16 @@ export class AuthGuardService implements CanActivate {
   ) { }
 
   async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-    if(!await this.auth.getStoredUser()) {
-      this.router.navigateByUrl('/login')
-      return false
-    }
+    return new Promise<boolean>(async(resolve, reject) => {
+      const user = await this.auth.getStoredUser()
 
-    return true
+      if(!user) {
+        this.router.navigate(['login'])
+
+        resolve(true)
+      }
+
+      resolve(true)
+    })
   }
 }

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { NavigationEnd, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular'
 import { ApiProviderService } from '../providers/api/api-provider.service' 
-
+import { AccidentService } from '../providers/accident/accident.service'
 
 @Component({
   selector: 'app-accidents-list',
@@ -18,7 +18,8 @@ export class AccidentsListPage implements OnInit {
   constructor(
     private router: Router,
     public api: ApiProviderService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private accident: AccidentService
   ) { }
 
   async ngOnInit() {
@@ -38,7 +39,7 @@ export class AccidentsListPage implements OnInit {
   public async onEnter(): Promise<void> {
     try {
       await this.presentLoading()
-      const accidents = await this.api.performGet('/accidents')
+      const accidents = await this.accident.fetchAccidents()
       this.accidents = (accidents.filter(accident => accident.id === 1))
     }catch(err) {
       console.log(err)
