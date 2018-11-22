@@ -13,14 +13,18 @@ import { Geofence } from '@ionic-native/geofence/ngx'
 import { ImagePicker } from '@ionic-native/image-picker/ngx'
 import { Base64 } from '@ionic-native/base64/ngx'
 import { Camera } from '@ionic-native/camera/ngx'
+// import { NativeStorage } from '@ionic-native/native-storage/ngx'
+import { IonicStorageModule  } from '@ionic/storage'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { AuthGuardService } from './providers/auth-guard/auth-guard.service'
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule ],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule,IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,
@@ -31,6 +35,8 @@ import { AppComponent } from './app.component';
     ImagePicker,
     Base64,
     Camera,
+    IonicStorageModule,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

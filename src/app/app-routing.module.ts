@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from './providers/auth-guard/auth-guard.service'
 
 const routes: Routes = [
-  { path: '', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'app', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule', canActivate:[AuthGuardService] },
+  { path: 'app', loadChildren: './tabs/tabs.module#TabsPageModule', canActivate: [AuthGuardService] },
   { path: 'warning', loadChildren: './warning/warning.module#WarningPageModule' },
   { path: 'stepone', loadChildren: './stepone/stepone.module#SteponePageModule' },
   { path: 'steptwo', loadChildren: './steptwo/steptwo.module#SteptwoPageModule' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'accidents-list', loadChildren: './accidents-list/accidents-list.module#AccidentsListPageModule' },
   { path: 'accidents/:id', loadChildren: './accident-details/accident-details.module#AccidentDetailsPageModule' },
   { path: 'accidents/:id/map', loadChildren: './accident-map-view/accident-map-view.module#AccidentMapViewPageModule' },
+  { path: '**', redirectTo: 'app' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

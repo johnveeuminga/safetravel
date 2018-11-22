@@ -17,6 +17,7 @@ export class ApiProviderService {
   }
 
   performPost (url, params): Promise<any> {
+    console.log(`${this.API_URL}${url}`)
     return this.http.post(`${this.API_URL}${url}`, params).toPromise()
   }
 

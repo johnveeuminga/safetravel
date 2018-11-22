@@ -20,7 +20,6 @@ export class AccidentService {
         'Authorization': `Bearer ${this.auth.user.accessToken}`
       }
     }
-
   }
 
 
@@ -29,6 +28,8 @@ export class AccidentService {
       
       const accidents = await this.api.performGet('/api/accidents', { headers: this.headers })
       this.accidents = accidents.data
+
+      console.log(this.accidents)
 
       return this.accidents
     } catch(err) {

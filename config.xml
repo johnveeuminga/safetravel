@@ -117,6 +117,8 @@
     <plugin name="cordova-plugin-add-swift-support" spec="1.7.2" />
     <allow-navigation href="http://localhost:8101" sessionid="c889a1a8" />
     <allow-navigation href="http://localhost:8102" sessionid="dd7e3902" />
+    <plugin name="cordova-plugin-nativestorage" spec="2.3.2" />
+    <plugin name="cordova-sqlite-storage" spec="2.5.2" />
     <engine name="android" spec="7.1.2" />
     <engine name="ios" spec="4.5.5" />
 </widget>
