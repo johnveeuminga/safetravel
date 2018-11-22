@@ -15,6 +15,7 @@ import { Base64 } from '@ionic-native/base64/ngx'
 import { Camera } from '@ionic-native/camera/ngx'
 // import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { IonicStorageModule  } from '@ionic/storage'
+import { GooglePlus } from '@ionic-native/google-plus/ngx'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { AuthInterceptorService } from './providers/auth-interceptor/auth-interc
     },
     AuthInterceptorService,
     AuthGuardService,
+    GooglePlus,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-back-button></ion-back-button>
+    <!-- <ion-back-button defaultHref="home"> -->
     <ion-title>Your Profile</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,19 +16,19 @@
     <div class="user-content">
         <div class="user-info">
           <div class="user-info__label">
-            <ion-icon name="mail"></ion-icon>
+            <ion-icon name="mail"></ion-icon> Email
           </div>
           {{user.email}}
         </div>
         <div class="user-info">
           <div class="user-info__label">
-            <ion-icon name="pin"></ion-icon>
+            <ion-icon name="pin"></ion-icon> Address
           </div>
           {{user.address}}
         </div>
         <div class="user-info">
           <div class="user-info__label">
-            <ion-icon name="log-in"></ion-icon>
+            <ion-icon name="log-in"></ion-icon> Member since: 
           </div>
           {{ user.created_at | momentDate }}
         </div>

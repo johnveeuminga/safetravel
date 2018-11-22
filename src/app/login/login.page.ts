@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../providers/auth/auth.service'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { LoadingController, AlertController } from '@ionic/angular'
+import { GooglePlus } from '@ionic-native/google-plus/ngx' 
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
+    private googlePlus: GooglePlus
   ) { 
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
@@ -39,6 +41,7 @@ export class LoginPage implements OnInit {
       await this.showAlert(res.error.message)
     } 
     await this.hideLoader()
+    this.form.reset()
     this.router.navigateByUrl('/app/tabs/(home:home)')
   }
 
@@ -64,5 +67,17 @@ export class LoginPage implements OnInit {
     this.alert.present()
   }
 
+  async loginWithGoogle () {
+    console.log('login')
+    try {
+      const user = await this.googlePlus.login({
+        webClientId: '897970861884-d7v4sjnqs02dgtrhf3agqkj9t5lfgtkm.apps.googleusercontent.com'
+      })
 
+      console.log(user)
+    } catch(err) {
+      console.log(err)
+    }
+    
+  }
 }

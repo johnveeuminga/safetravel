@@ -11,7 +11,6 @@ import { AccidentService } from '../providers/accident/accident.service'
   styleUrls: ['./accident-details.page.scss'],
 })
 export class AccidentDetailsPage implements OnInit {
-  private subscription: Subscription;
   accident: any
   loading: any
   sub
@@ -27,11 +26,7 @@ export class AccidentDetailsPage implements OnInit {
   async ngOnInit() {
     await this.onEnter();
   }
-
-    /**
-   * TODO: Get accidents reported by user to user using Laravel/ 
-   * This is just a mockup
-   */
+  
   async onEnter(): Promise<void> {
     try {
       await this.presentLoading()

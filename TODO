@@ -1,7 +1,11 @@
 UPCOMING:
-- Set up user profile page.
-- Set up change password page.
-- User registration
+- Pusher.js integration on accident report and accident change(API)
+- Accident image upload
+- User avatar upload
+- Fix route strategy(Least priority)
+
 
 TODAY:
-- Fix route strategy
+- Accident PUT request for status change.
+- Edit profile.
+- Change password page.

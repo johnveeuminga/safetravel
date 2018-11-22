@@ -111,7 +111,7 @@ export class StepthreePage implements OnInit {
 
     this.hideLoader()
 
-    this.goToThankYouPage()
+    // this.goToThankYouPage()
 
   }
 

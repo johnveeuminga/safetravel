@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Base64 } from '@ionic-native/base64/ngx'
 
+import { ApiProviderService } from '../api/api-provider.service'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +16,7 @@ export class AccidentReportingService {
   constructor(
     private http: HttpClient,
     private base64: Base64,
+    private api: ApiProviderService
   ) { }
 
   addFields (fields: Object) {
@@ -32,7 +35,7 @@ export class AccidentReportingService {
       status: 1,
     }
 
-    let results = await this.http.post(this.API_URL, payload).toPromise()
+    let results = await this.api.performPost(this.API_URL, payload)
 
     return results
   }
