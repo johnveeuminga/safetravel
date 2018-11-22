@@ -85,4 +85,10 @@ export class AuthService {
 
     return user
   }
+
+  async logoutUser () {
+    await this.storage.remove(this.USER_STORAGE_KEY)
+
+    return
+  }
 }
