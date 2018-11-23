@@ -4,6 +4,7 @@ import { AuthService } from '../providers/auth/auth.service'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { LoadingController, AlertController } from '@ionic/angular'
 import { GooglePlus } from '@ionic-native/google-plus/ngx' 
+import { ApiProviderService } from '../providers/api/api-provider.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private googlePlus: GooglePlus
+    private googlePlus: GooglePlus,
+    private api: ApiProviderService
   ) { 
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
@@ -70,14 +72,29 @@ export class LoginPage implements OnInit {
   async loginWithGoogle () {
     console.log('login')
     try {
-      const user = await this.googlePlus.login({
+      const googleUser = await this.googlePlus.login({
         webClientId: '897970861884-d7v4sjnqs02dgtrhf3agqkj9t5lfgtkm.apps.googleusercontent.com'
       })
 
-      console.log(user)
+      await this.showLoader()
+      const user = await this.api.performPost('/social/google', {
+        token: googleUser.accessToken
+      })
+
+      await this.auth.storeUser({
+        ...user.user,
+        accessToken: user.access_token,
+        refreshToken: ''
+      })
+
+      await this.hideLoader()
+
+      this.router.navigateByUrl('/app/tabs/(home:home)')
+      
     } catch(err) {
       console.log(err)
     }
+
     
   }
 }

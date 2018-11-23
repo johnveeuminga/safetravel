@@ -9,7 +9,7 @@
   <div class="user-details">
     <div class="user-header">
       <div class="avatar-container" padding text-center>
-        <img src="https://api.adorable.io/avatars/155/{{user.id}}.png" alt="Random Avatar">
+        <img [src]="getUserProfileImage()" alt="Random Avatar">
         <h2>{{user.name}}</h2>
       </div>
     </div>
@@ -24,7 +24,7 @@
           <div class="user-info__label">
             <ion-icon name="pin"></ion-icon> Address
           </div>
-          {{user.address}}
+          {{user.address || "---"}}
         </div>
         <div class="user-info">
           <div class="user-info__label">
@@ -33,7 +33,7 @@
           {{ user.created_at | momentDate }}
         </div>
         <div class="user-info">
-          <ion-button>Edit</ion-button>
+          <ion-button *ngIf="!user.provider">Edit</ion-button>
           <ion-button color='secondary' (click)="showAlert()">Sign out</ion-button>
         </div>
       </div>

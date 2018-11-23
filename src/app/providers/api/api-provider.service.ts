@@ -15,8 +15,8 @@ export class ApiProviderService {
     return this.http.get(`${SERVER_URL}${url}`, params).toPromise()
   }
 
-  async performPost (url, params = {}): Promise<any> {  
-    return this.http.post(`${SERVER_URL}${url}`, params).toPromise()
+  async performPost (url, data, params = {}): Promise<any> {  
+    return this.http.post(`${SERVER_URL}${url}`, data, params).toPromise()
   }
 
   async performPut (url, params = {}) {

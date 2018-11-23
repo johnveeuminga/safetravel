@@ -80,8 +80,8 @@ export class AuthService {
     return user
   }
 
-  async storeUser () {
-    const user = await this.storage.set(this.USER_STORAGE_KEY, this.user)
+  async storeUser (toStore = this.user) {
+    const user = await this.storage.set(this.USER_STORAGE_KEY, toStore)
 
     return user
   }

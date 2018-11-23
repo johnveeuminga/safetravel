@@ -47,4 +47,8 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['login'])
   }
 
+  getUserProfileImage () {
+    return this.user.image_url || `https://api.adorable.io/avatars/155/${this.user.id}.png`
+  }
+
 }

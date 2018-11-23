@@ -3,7 +3,7 @@
     <name>SafeTravel</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -39,6 +39,10 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <config-file parent="/resources" target="./res/values/strings.xml">
+            <string name="fb_app_id">231868480836344</string>
+            <string name="fb_app_name">Juan Carlos first app</string>
+        </config-file>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -115,10 +119,13 @@
         <variable name="GEOFENCE_IN_USE_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use." />
     </plugin>
     <plugin name="cordova-plugin-add-swift-support" spec="1.7.2" />
-    <allow-navigation href="http://localhost:8101" sessionid="c889a1a8" />
-    <allow-navigation href="http://localhost:8102" sessionid="dd7e3902" />
     <plugin name="cordova-plugin-nativestorage" spec="2.3.2" />
     <plugin name="cordova-sqlite-storage" spec="2.5.2" />
-    <engine name="android" spec="7.1.2" />
     <engine name="ios" spec="4.5.5" />
+    <plugin name="cordova-plugin-facebook4" spec="3.2.0">
+        <variable name="APP_ID" value="231868480836344" />
+        <variable name="APP_NAME" value="Juan Carlos first app" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.38.1" />
+    </plugin>
+    <engine name="android" spec="~7.1.3" />
 </widget>
