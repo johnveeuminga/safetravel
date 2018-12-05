@@ -3,7 +3,7 @@
     <name>SafeTravel</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -114,18 +114,20 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Take accident photos." />
     </plugin>
     <plugin name="com-badrit-base64" />
-    <plugin name="cordova-plugin-geofence" spec="0.7.0">
-        <variable name="GEOFENCE_ALWAYS_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location Even In Background." />
-        <variable name="GEOFENCE_IN_USE_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use." />
-    </plugin>
     <plugin name="cordova-plugin-add-swift-support" spec="1.7.2" />
     <plugin name="cordova-plugin-nativestorage" spec="2.3.2" />
     <plugin name="cordova-sqlite-storage" spec="2.5.2" />
-    <engine name="ios" spec="4.5.5" />
     <plugin name="cordova-plugin-facebook4" spec="3.2.0">
         <variable name="APP_ID" value="231868480836344" />
         <variable name="APP_NAME" value="Juan Carlos first app" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.38.1" />
     </plugin>
-    <engine name="android" spec="~7.1.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
+    <plugin name="cordova-plugin-geofence" spec="https://github.com/jupesoftware/cordova-plugin-geofence">
+        <variable name="GOOGLE_API_VERSION" value="11.8.0" />
+        <variable name="GEOFENCE_ALWAYS_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location Even In Background." />
+        <variable name="GEOFENCE_IN_USE_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use." />
+    </plugin>
+    <engine name="ios" spec="4.5.5" />
+    <engine name="android" spec="7.1.3" />
 </widget>

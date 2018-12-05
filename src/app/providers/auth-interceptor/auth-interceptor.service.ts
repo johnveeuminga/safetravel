@@ -21,8 +21,6 @@ export class AuthInterceptorService implements HttpInterceptor {
           headers: request.headers.set('Authorization', `Bearer ${this.auth.user.accessToken}`)
         }
       )
-
-      console.log(request)
     }
    
     return next.handle(request)

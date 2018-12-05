@@ -17,9 +17,9 @@ import {
   GoogleMapsAnimation
 } from '@ionic-native/google-maps';
 
-// Location Service
+// Services
 import { LocationProviderService } from '../providers/location/location-provider.service' 
-import { GeofenceService } from '../providers/geofence/geofence.service' 
+import { AuthService } from '../providers/auth/auth.service'
 import { AccidentService } from '../providers/accident/accident.service'
 
 // MapStyles
@@ -37,6 +37,7 @@ export class HomePage implements OnInit {
   loading: any
   accidents =  []
   selectedMarker = null
+  user = null
 
   constructor(
     private platform: Platform,
@@ -45,14 +46,25 @@ export class HomePage implements OnInit {
     private zone: NgZone,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private events: Events
-  ) {}
+    private events: Events,
+    private auth: AuthService
+  ) {
+  }
 
   async ngOnInit() {
     await this.platform.ready()
     await this.presentLoading()
+    await this.accidentService.fetchAccidents()
     await this.location.getInitialPosition()
     await this.loadMap()
+    this.user = this.auth.user
+    this.events.subscribe('user:logged-in', (user) => {
+      this.user = user
+    }) 
+
+    this.events.subscribe('user:logged-out', () => {
+      this.user = null
+    }) 
   }
 
   async loadMap() {
@@ -68,6 +80,10 @@ export class HomePage implements OnInit {
         tilt: 30
       },
       styles: mapStyle
+    })
+
+    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe((data) => {
+      this.selectedMarker = null
     })
 
     // add a marker
@@ -88,9 +104,12 @@ export class HomePage implements OnInit {
     this.location.startTracking()
     
     this.events.subscribe('location:changed', (userPosition) => {
-      console.log(userPosition)
-      this.userMarker.setPosition(userPosition)
+      this.zone.run(() => {
+        this.userMarker.setPosition(userPosition)
+        this.map.setCameraTarget(userPosition)
+      })
     })
+
     this.addMarkers()
 
     if(this.loading) {
@@ -121,7 +140,7 @@ export class HomePage implements OnInit {
           })
           this.map.addCircle({
             'center': {lat, lng},
-            'radius': 450,
+            'radius': 100,
             'strokeColor' : '#88A000',
             'strokeWidth': 1,
             'fillColor' : '#880000'

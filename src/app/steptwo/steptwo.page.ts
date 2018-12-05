@@ -48,8 +48,10 @@ export class SteptwoPage implements OnInit {
       this.showLoading()
 
       try {
-        const {lat,lng} = await this.locationService.getUserPosition()
-        this.accidentReporting.addFields({lat, lng})
+        const position = await this.locationService.getUserPosition()
+        await this.locationService.geocode(position)
+
+        this.accidentReporting.addFields({lat: position.lat, lng: position.lng})
       } catch( err ) {
         console.log(err)
       }
@@ -59,7 +61,7 @@ export class SteptwoPage implements OnInit {
       }
     }
 
-    this.goToNextPage()
+    // this.goToNextPage()
   }
 
   private _getLocationType () {

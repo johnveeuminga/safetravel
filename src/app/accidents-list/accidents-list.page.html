@@ -7,14 +7,34 @@
 </ion-header>
 
 <ion-content>
-  <div class="accident" *ngFor="let accident of accidents; index as i" (click)="goToDetails(accident.id)">
-    <div class="accident-icon__container">
-      <ion-icon name='warning' color='danger'></ion-icon>
-    </div>
-    <div class="accident__details">
-      <!-- <p class='accident-details__name'>{{accident.title}}</p> -->
-      <p>{{accident.description}}</p>
-      <small class='accident-details__date'>{{accident.date | momentDate }}</small>
+  <div *ngIf='user; else notAuthenticated'>
+    <div class="accidents-list" *ngIf="accidents.length > 0;else noAccidents">
+      <div class="accident" *ngFor="let accident of accidents; index as i" (click)="goToDetails(accident.id)">
+          <div class="accident-icon__container">
+            <ion-icon name='warning' color='danger'></ion-icon>
+          </div>
+          <div class="accident__details">
+            <!-- <p class='accident-details__name'>{{accident.title}}</p> -->
+            <p>{{accident.description}}</p>
+            <small class='accident-details__date'>{{accident.created_at.date | momentDate }}</small>
+          </div>
+        </div>
     </div>
   </div>
+  <ng-template #noAccidents>
+    <div class="accidents__no-accidents">
+      <h2>You haven't reported any accidents yet.</h2>
+    </div>
+  </ng-template>
+  <ng-template #notAuthenticated>
+    <div class="accidents__no-accidents">
+      <h2>You are not logged in yet.</h2>
+      <ion-button (click)='goToLogin()'>Login</ion-button>
+    </div>
+  </ng-template>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf='user'>
+    <ion-fab-button (click)="goToWarning()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

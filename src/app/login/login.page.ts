@@ -4,7 +4,9 @@ import { AuthService } from '../providers/auth/auth.service'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { LoadingController, AlertController } from '@ionic/angular'
 import { GooglePlus } from '@ionic-native/google-plus/ngx' 
+import { Facebook } from '@ionic-native/facebook/ngx'
 import { ApiProviderService } from '../providers/api/api-provider.service';
+import { GOOGLE_WEB_CLIENT_ID } from '../../environments/environment'
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,7 @@ export class LoginPage implements OnInit {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private googlePlus: GooglePlus,
-    private api: ApiProviderService
+    private facebook: Facebook,
   ) { 
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
@@ -70,22 +72,14 @@ export class LoginPage implements OnInit {
   }
 
   async loginWithGoogle () {
-    console.log('login')
     try {
-      const googleUser = await this.googlePlus.login({
-        webClientId: '897970861884-d7v4sjnqs02dgtrhf3agqkj9t5lfgtkm.apps.googleusercontent.com'
-      })
-
       await this.showLoader()
-      const user = await this.api.performPost('/social/google', {
-        token: googleUser.accessToken
+
+      const googleUser = await this.googlePlus.login({
+        webClientId: GOOGLE_WEB_CLIENT_ID
       })
 
-      await this.auth.storeUser({
-        ...user.user,
-        accessToken: user.access_token,
-        refreshToken: ''
-      })
+      await this.auth.loginUsingSocial(googleUser.accessToken, 'google')
 
       await this.hideLoader()
 
@@ -94,7 +88,25 @@ export class LoginPage implements OnInit {
     } catch(err) {
       console.log(err)
     }
+  }
 
-    
+  async loginWithFacebook () {
+    try {
+      await this.showLoader()
+
+      const facebookUser = await this.facebook.login(['email', 'public_profile'])
+
+      console.log(facebookUser)
+
+      const user = await this.auth.loginUsingSocial(facebookUser.authResponse.accessToken, 'facebook')
+
+      await this.hideLoader()
+
+      this.router.navigateByUrl('/app/tabs/(home:home)')
+
+
+    } catch(err) {
+      console.log(err)
+    }
   }
 }

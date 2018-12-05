@@ -1,3 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content padding class='login-page'>
   <div class='login-page__logo-container' text-center>
     <img src="./assets/logo.png" alt="Logo" class='logo login-page__logo'>
@@ -22,5 +31,6 @@
       <img src="../../assets/google.svg" alt="">
         Sign in with Google
     </button>
+    <button block class='facebook-button' expand='block' (click)="loginWithFacebook()"> <ion-icon name="logo-facebook"></ion-icon> Sign in With Facebook</button>    
   </div>
 </ion-content>

@@ -1,11 +1,6 @@
-UPCOMING:
-- Pusher.js integration on accident report and accident change(API)
-- Accident image upload
-- User avatar upload
-- Fix route strategy(Least priority)
-
-
 TODAY:
-- Accident PUT request for status change.
-- Edit profile.
-- Change password page.
+1. Fix routes.
+2. Test geofence.
+
+OPTIONAL:
+1. Integrate Pusher.js

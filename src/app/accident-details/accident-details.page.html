@@ -11,9 +11,9 @@
   <div class="accident-details" *ngIf='accident'>
     <div class="accident-meta">
         <h2>{{accident.name}}</h2>
-        <small class='accident__date'>{{ accident.created_at | momentDate }}</small>
+        <small class='accident__date'>{{ accident.created_at.date | momentDate }}</small>
         <p>{{accident.description}}</p>
-        <div class="accident__actions" *ngIf="accident.status === 1" (click)="markAccidentAsResolved()">
+        <div class="accident__actions" *ngIf="accident.status === 1 && user && user.id === accident.user_id" (click)="markAccidentAsResolved()">
           <ion-button>Mark as Resolved</ion-button>
         </div>
         <ion-button color='secondary' (click)="viewMap()">View on Map</ion-button>
@@ -24,7 +24,7 @@
           <ion-row>
             <ion-col size='6' *ngFor="let image of accident.images">
               <div class="image-container">
-                <img src="{{image.uri}}" />
+                <img src="{{image}}" />
               </div>
             </ion-col>
           </ion-row>

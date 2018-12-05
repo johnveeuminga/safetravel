@@ -4,6 +4,7 @@ import { NavigationEnd, Router, ActivatedRoute  } from '@angular/router';
 import { LoadingController } from '@ionic/angular'
 import { ApiProviderService } from '../providers/api/api-provider.service' 
 import { AccidentService } from '../providers/accident/accident.service'
+import { AuthService } from '../providers/auth/auth.service'
 
 @Component({
   selector: 'app-accident-details',
@@ -14,14 +15,18 @@ export class AccidentDetailsPage implements OnInit {
   accident: any
   loading: any
   sub
+  user: any
 
   constructor(
     private router: Router,
     public api: ApiProviderService,
     private loadingCtrl: LoadingController,
     private accidentService: AccidentService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private auth: AuthService
+  ) { 
+    this.user = this.auth.user
+  }
 
   async ngOnInit() {
     await this.onEnter();
@@ -32,6 +37,7 @@ export class AccidentDetailsPage implements OnInit {
       await this.presentLoading()
       this.sub =  this.route.params.subscribe( async routeParams => {
         const id = routeParams['id']
+        console.log(id)
         this.accident = await this.accidentService.getAccident(id)
         this.hideLoading()
       })
@@ -39,8 +45,6 @@ export class AccidentDetailsPage implements OnInit {
       console.log(err)
       this.hideLoading()
     }
-
-
   }
 
   async presentLoading(message = null) {

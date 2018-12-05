@@ -9,7 +9,7 @@
     </p>
     <ion-button (click)="goToDetails()">View More</ion-button>
   </div>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf='user'>
     <ion-fab-button (click)="goToWarning()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

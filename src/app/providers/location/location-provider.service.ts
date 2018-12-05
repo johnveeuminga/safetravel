@@ -1,7 +1,8 @@
 import { Injectable, NgZone, Output, EventEmitter } from '@angular/core'
 import { Events } from '@ionic/angular'
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx'
-import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx'
+import { Geolocation } from '@ionic-native/geolocation/ngx'
+import { Geocoder, GeocoderResult, BaseArrayClass} from '@ionic-native/google-maps/ngx'
 import 'rxjs/add/operator/filter'
 
 @Injectable({
@@ -55,22 +56,26 @@ export class LocationProviderService {
    */
   startTracking( cb = null ) {
     // Background tracking
-    console.log('Tracker Started')
     this.backgroundGeolocation.configure(bgConfig).subscribe((location) => {
-      if(!location) return false 
-      this.zone.run(() => {
-        if(this.userPosition.lat !==  location.latitude || this.userPosition.lng !== location.longitude) {
-          this.userPosition.lat = location.latitude;
-          this.userPosition.lng = location.longitude;
-          this.events.publish('location:changed', this.userPosition)
-        }
-      })
+      console.log('Position changed')
+      if(location) {
+        this.zone.run(() => {
+          console.log('Position changed')
+          if(this.userPosition.lat !==  location.latitude || this.userPosition.lng !== location.longitude) {
+            this.userPosition.lat = location.latitude;
+            this.userPosition.lng = location.longitude;
+            this.events.publish('location:changed', this.userPosition)
+          }
+        })
+      }
       
     }, err => {
       console.log(err)
     })
 
-    this.backgroundGeolocation.start()
+    this.backgroundGeolocation.start().then(() => {
+      console.log('Tracker Started')      
+    })
 
     // Foreground tracking
     // this.watch = this.geolocation.watchPosition(fgConfig).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
@@ -94,6 +99,25 @@ export class LocationProviderService {
     this.backgroundGeolocation.finish();
     this.watch.unsubscribe();
   }
+
+  /**
+   * Extracts the address of a certain location
+   * 
+   * @param locations the locations to geocode
+   */
+  async geocode (place, reverse = false) {
+    let options = {}
+    if(reverse) {
+      options['position'] = place
+    } else{
+      options['address'] = place
+    }
+    const results: GeocoderResult[] | BaseArrayClass<GeocoderResult[]> = await Geocoder.geocode(options)
+    
+    return results
+    
+  }
+
 }
 
 const bgConfig = {

@@ -17,6 +17,8 @@ import { Camera } from '@ionic-native/camera/ngx'
 import { IonicStorageModule  } from '@ionic/storage'
 import { GooglePlus } from '@ionic-native/google-plus/ngx'
 import { Facebook } from '@ionic-native/facebook/ngx' 
+import { WebView } from '@ionic-native/ionic-webview/ngx'
+import { FileTransfer } from '@ionic-native/file-transfer/ngx'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +50,8 @@ import { AuthInterceptorService } from './providers/auth-interceptor/auth-interc
     AuthGuardService,
     GooglePlus,
     Facebook,
+    WebView,
+    FileTransfer,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../providers/auth/auth.service'
-import { AlertController } from '@ionic/angular'
+import { AlertController, Events } from '@ionic/angular'
 import { Router } from '@angular/router'
 
 @Component({
@@ -16,15 +16,18 @@ export class ProfilePage implements OnInit {
   constructor(
     private auth: AuthService,
     private alertCtrl: AlertController,
-    private router: Router
+    private router: Router,
+    private events: Events
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.user = this.auth.user
+    this.events.subscribe('user:logged-in', (user) => {
+      this.user = user
+    })
   }
 
   async showAlert() {
-    console.log('Show')
     this.alert = await this.alertCtrl.create({
       message: "Are you sure?",
       buttons: [
@@ -44,7 +47,12 @@ export class ProfilePage implements OnInit {
 
   async logout () {
     await this.auth.logoutUser()
-    this.router.navigate(['login'])
+    this.user = null
+    this.router.navigate(['/app'])
+  }
+
+  async goToLogin() {
+    this.router.navigateByUrl('/login')
   }
 
   getUserProfileImage () {

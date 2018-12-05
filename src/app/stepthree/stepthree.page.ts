@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone} from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular'
+import { WebView } from '@ionic-native/ionic-webview/ngx'
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
@@ -24,7 +25,8 @@ export class StepthreePage implements OnInit {
     private loadingCtrl: LoadingController,
     private actionSheetController: ActionSheetController,
     private camera: Camera,
-    private zone: NgZone
+    private zone: NgZone,
+    private webview: WebView
   ) { }
 
   ngOnInit() {
@@ -63,6 +65,7 @@ export class StepthreePage implements OnInit {
 
     try {
       let photo = await this.camera.getPicture(options)
+
       this.zone.run(() => {
         this.images.push(photo)
       })
@@ -90,28 +93,18 @@ export class StepthreePage implements OnInit {
   }
 
   async processForm () {
-    const images = []
-    if(this.images) {
-      this.images.forEach(async (image) => {
-        let b64 = await this.accidentReporting.processImageUrl(image)
-        images.push({
-          uri: b64
-        })
-      })
-    }
-
     this.accidentReporting.addFields({
-      images,
+      images: this.images,
       date: this.dateTime
     })
 
     await this.showLoader("Wrapping up your report.")
 
-    this.accidentReporting.submit()
+    await this.accidentReporting.submit()
 
-    this.hideLoader()
+    await this.hideLoader()
 
-    // this.goToThankYouPage()
+    this.goToThankYouPage()
 
   }
 
@@ -120,6 +113,10 @@ export class StepthreePage implements OnInit {
       message
     })
     this.loading.present()
+  }
+
+  normalizeImage(url) {
+    return this.webview.convertFileSrc(url)
   }
   
   async hideLoader() {

@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content>
-  <div class="user-details">
+  <div class="user-details" *ngIf='user; else notLoggedIn'>
     <div class="user-header">
       <div class="avatar-container" padding text-center>
         <img [src]="getUserProfileImage()" alt="Random Avatar">
@@ -14,28 +14,34 @@
       </div>
     </div>
     <div class="user-content">
-        <div class="user-info">
-          <div class="user-info__label">
-            <ion-icon name="mail"></ion-icon> Email
-          </div>
-          {{user.email}}
+      <div class="user-info">
+        <div class="user-info__label">
+          <ion-icon name="mail"></ion-icon> Email
         </div>
-        <div class="user-info">
-          <div class="user-info__label">
-            <ion-icon name="pin"></ion-icon> Address
-          </div>
-          {{user.address || "---"}}
+        {{user.email}}
+      </div>
+      <div class="user-info">
+        <div class="user-info__label">
+          <ion-icon name="pin"></ion-icon> Address
         </div>
-        <div class="user-info">
-          <div class="user-info__label">
-            <ion-icon name="log-in"></ion-icon> Member since: 
-          </div>
-          {{ user.created_at | momentDate }}
+        {{user.address || "---"}}
+      </div>
+      <div class="user-info">
+        <div class="user-info__label">
+          <ion-icon name="log-in"></ion-icon> Member since: 
         </div>
-        <div class="user-info">
-          <ion-button *ngIf="!user.provider">Edit</ion-button>
-          <ion-button color='secondary' (click)="showAlert()">Sign out</ion-button>
-        </div>
+        {{ user.created_at | momentDate }}
+      </div>
+      <div class="user-info">
+        <ion-button *ngIf="!user.provider">Edit</ion-button>
+        <ion-button color='secondary' (click)="showAlert()">Sign out</ion-button>
       </div>
     </div>
+  </div>
+  <ng-template #notLoggedIn>
+    <div class="profile__login">
+      <h2>You are not logged in.</h2>
+      <ion-button (click)="goToLogin()">Login</ion-button>
+    </div>
+  </ng-template>
 </ion-content>
