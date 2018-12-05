@@ -83,7 +83,9 @@ export class HomePage implements OnInit {
     })
 
     this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe((data) => {
-      this.selectedMarker = null
+      this.zone.run(() => {
+        this.selectedMarker = null
+      })
     })
 
     // add a marker
